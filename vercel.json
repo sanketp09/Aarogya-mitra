@@ -4,11 +4,5 @@
   ],
   "buildCommand": "npm run install:models && npm run build",
   "outputDirectory": "dist",
-  "framework": "vite",
-  "routes": [
-    { "handle": "filesystem" },
-    { "src": "/assets/(.*)", "dest": "/assets/$1" },
-    { "src": "/models/(.*)", "dest": "/models/$1" },
-    { "src": "/(.*)", "dest": "/index.html" }
-  ]
+  "framework": "vite"
 } 
