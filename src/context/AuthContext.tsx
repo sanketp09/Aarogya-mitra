@@ -12,6 +12,7 @@ import {
   signInWithPhoneNumber,
   User,
   ConfirmationResult,
+  signInAnonymously,
 } from "firebase/auth";
 
 import { auth } from "../firebase.ts";
@@ -49,10 +50,26 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
 
+  // Auto sign in anonymously when no user is detected
   useEffect(() => {
+    const handleAnonymousAuth = async () => {
+      try {
+        if (!auth.currentUser) {
+          await signInAnonymously(auth);
+          console.log("Signed in anonymously");
+        }
+      } catch (error) {
+        console.error("Anonymous auth error:", error);
+      }
+    };
+
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
-      setLoading(false);
+      if (!user) {
+        handleAnonymousAuth();
+      } else {
+        setLoading(false);
+      }
     });
 
     return unsubscribe;
@@ -202,13 +219,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       toast({
         title: "Logged out successfully",
       });
-    } catch (error: any) {
+      // After logout, we'll automatically sign in anonymously due to the useEffect
+    } catch (error) {
+      console.error("Logout error:", error);
       toast({
         variant: "destructive",
         title: "Error logging out",
-        description: error.message,
+        description: "An error occurred while logging out.",
       });
-      throw error;
     }
   };
 

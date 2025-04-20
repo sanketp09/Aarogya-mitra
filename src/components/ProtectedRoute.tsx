@@ -1,4 +1,3 @@
-import { Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
 
 interface ProtectedRouteProps {
@@ -7,7 +6,6 @@ interface ProtectedRouteProps {
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   const { currentUser, loading } = useAuth();
-  const location = useLocation();
 
   if (loading) {
     return (
@@ -17,11 +15,8 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
     );
   }
 
-  if (!currentUser) {
-    // Redirect to login page with return path
-    return <Navigate to="/login" state={{ from: location }} replace />;
-  }
-
+  // With anonymous auth, we always have a user, 
+  // so we simply render the children
   return <>{children}</>;
 };
 
