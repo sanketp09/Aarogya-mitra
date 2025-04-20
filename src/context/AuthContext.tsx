@@ -95,6 +95,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const signInWithGoogle = async () => {
     try {
       const provider = new GoogleAuthProvider();
+      
+      // Add provider settings to help debugging
+      provider.setCustomParameters({
+        prompt: 'select_account'
+      });
 
       // Ensure only one popup runs at a time
       if (auth.currentUser) return;
@@ -107,10 +112,21 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       });
     } catch (error: any) {
       if (error.code !== "auth/cancelled-popup-request") {
+        console.error("Google login detailed error:", {
+          code: error.code,
+          message: error.message,
+          details: error
+        });
+        
+        let errorMessage = error.message;
+        if (error.code === "auth/unauthorized-domain") {
+          errorMessage = "This domain is not authorized for authentication. Please contact the administrator.";
+        }
+        
         toast({
           variant: "destructive",
           title: "Google login failed",
-          description: error.message,
+          description: errorMessage,
         });
       }
       console.error("Google login error:", error);
