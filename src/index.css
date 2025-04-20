@@ -1,0 +1,80 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 260 40% 98%;
+    --foreground: 260 10% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 260 10% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 260 10% 10%;
+
+    --primary: 260 60% 75%;
+    --primary-foreground: 260 10% 100%;
+
+    --secondary: 260 30% 55%;
+    --secondary-foreground: 260 10% 100%;
+
+    --muted: 260 40% 96%;
+    --muted-foreground: 260 10% 40%;
+
+    --accent: 260 40% 94%;
+    --accent-foreground: 260 10% 10%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 260 20% 90%;
+    --input: 260 20% 90%;
+    --ring: 260 60% 75%;
+
+    --radius: 1rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Larger text for better readability */
+  p, span, button, a, li, input, textarea {
+    @apply text-lg;
+  }
+
+  h1 {
+    @apply text-4xl font-bold;
+  }
+
+  h2 {
+    @apply text-3xl font-bold;
+  }
+
+  h3 {
+    @apply text-2xl font-bold;
+  }
+}
+
+@layer components {
+  .card-hover {
+    @apply transition-transform duration-200 hover:scale-[1.03] hover:shadow-lg;
+  }
+
+  .feature-card {
+    @apply bg-white rounded-xl p-6 shadow-md card-hover flex flex-col items-center;
+  }
+
+  .icon-container {
+    @apply flex items-center justify-center w-16 h-16 rounded-full bg-care-light mb-4;
+  }
+}

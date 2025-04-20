@@ -1,0 +1,56 @@
+{
+  "appointments": [
+    {
+      "_id": "1743691360902",
+      "doctorId": "3",
+      "doctorName": "Dr. Emily Wilson",
+      "date": "April 19, 2023",
+      "time": "10:00 AM",
+      "status": "scheduled",
+      "id": 1
+    },
+    {
+      "_id": "1743691494140",
+      "doctorId": "4",
+      "doctorName": "Dr. James Rodriguez",
+      "date": "April 17, 2023",
+      "time": "4:00 PM",
+      "status": "scheduled",
+      "id": 2
+    }
+  ],
+  "medications": [
+    {
+      "name": "dolo",
+      "dosage": "500mg",
+      "frequency": "Twice Daily",
+      "time": "22:10",
+      "taken": false,
+      "id": 1
+    },
+    {
+      "name": "paracetamol",
+      "dosage": "500mg",
+      "frequency": "Twice Daily",
+      "time": "22:13",
+      "taken": false,
+      "id": 2
+    },
+    {
+      "name": "AURA",
+      "dosage": "500mg",
+      "frequency": "As Needed",
+      "time": "23:48",
+      "taken": false,
+      "id": 3
+    },
+    {
+      "name": "AURA",
+      "dosage": "500mg",
+      "frequency": "Twice Daily",
+      "time": "01:35",
+      "taken": false,
+      "id": 4
+    }
+  ]
+}
